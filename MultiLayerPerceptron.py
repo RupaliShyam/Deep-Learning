@@ -106,7 +106,7 @@ test_dataset = CifarDataset("cifar10_test", tf=False)
 test_dataloader = torch.utils.data.DataLoader(dataset=test_dataset,
                                           batch_size=128,
                                           shuffle=False)
-print("Part 1 done.")
+##################################################################
 
 input_size = 3072
 num_classes = 10
