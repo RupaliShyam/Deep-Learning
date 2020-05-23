@@ -64,8 +64,6 @@ class SentenceGeneration(nn.Module):
     self.hidden_size = hidden_size
     self.bias = bias
 
-    #####################################################################
-    # Implement here following the given signature                      #
     self.embedding = nn.Embedding(num_embeddings=vocabulary_size,
                                   embedding_dim=embedding_dim,
                                   padding_idx=PADDING_TOKEN)
@@ -74,10 +72,7 @@ class SentenceGeneration(nn.Module):
                                      bias=bias)
     self.classifier = nn.Linear(hidden_size, self.vocabulary_size)
     return
-    #####################################################################
-
-    return
-
+    
   def forward(self, history, state=None):
     """Predicts next character.
 
@@ -97,8 +92,6 @@ class SentenceGeneration(nn.Module):
       logits: Predicted logits (before softmax) over vocabulary.
       state: Current state, useful for continuous inference.
     """
-    #####################################################################
-    # Implement here following the given signature                      #
     data = self.embedding(history)
     batch_size, total_steps, _ = data.shape
     for step in range(total_steps):
@@ -110,9 +103,6 @@ class SentenceGeneration(nn.Module):
             outputs = next_state
         state = next_state
     logits = self.classifier(outputs)
-    # Placeholder, you need to override these two variables.
-    #logits, state = None, None
-    #####################################################################
     return logits, state
 
   def reset_parameters(self):
@@ -230,10 +220,8 @@ def shakespeare_writer():
   model.eval()
 
   generated_chars = []
-  #####################################################################
-  # Implement here for generating new sentence                        #
-  # Specifically, you need to iterate through the history and predict #
-  # next character; then you could take the predicted history as part #
+  # Iterate through the history and predict next character #
+  # then you could take the predicted history as part #
   # of history then repeat the process. The generation should be      #
   # repeated for FLAGS.generation_length times.
   hist = inputs
