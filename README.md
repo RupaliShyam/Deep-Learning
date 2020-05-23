@@ -1,7 +1,11 @@
 # Deep-Learning
 
-This repository contains Deep Learning models for various applications:
-- Basic neural network
+This repository contains Deep Learning models implemented in PyTorch for various applications:
+- Basic neural network for Image classification
+  Build a 3-layer MLP network along with custom Data Loader.
+  Transfer Learning using ImageNet pre-trained MobileNetV2 model and finetune it on the dataset.
+  1. Freeze all the MobileNetV2 layers (feature extraction) and train only the final classification layer
+  2. Finetune all MobileNetV2 layers together with the final classification layer.
 
 - Convolutional Neural Networks for category and domain prediction using AlexNet and its variations such as:
   1. Larger kernel sizes - resulting in smaller output
