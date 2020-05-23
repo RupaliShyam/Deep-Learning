@@ -2,8 +2,8 @@
 
 This repository contains Deep Learning models implemented in PyTorch for various applications:
 - Basic neural network for Image classification
-  Build a 3-layer MLP network along with custom Data Loader.
-  Transfer Learning using ImageNet pre-trained MobileNetV2 model and finetune it on the dataset.
+
+  Build a 3-layer MLP network along with custom Data Loader and implement Transfer Learning using ImageNet pre-trained MobileNetV2 model     and finetune it on the dataset.
   1. Freeze all the MobileNetV2 layers (feature extraction) and train only the final classification layer
   2. Finetune all MobileNetV2 layers together with the final classification layer.
 
