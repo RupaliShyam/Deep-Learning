@@ -77,8 +77,6 @@ class LSTMCell(nn.Module):
     self.hidden_size = hidden_size
     self.bias = bias
 
-    #####################################################################
-    # Implement here following the given signature                      #
     # Learnable weights and bias for `forget gate`
     self.W_f = nn.Parameter(torch.Tensor(hidden_size, hidden_size + input_size))
     if bias:
@@ -110,13 +108,9 @@ class LSTMCell(nn.Module):
     self.reset_parameters()
     print(self.extra_repr())
     print(self.count_parameters())
-    #####################################################################
-
     return
 
   def forward(self, x, prev_state):
-    #####################################################################
-    # Implement here following the given signature                      #
     if prev_state is None:
       batch = x.shape[0]
       prev_h = torch.zeros((batch, self.hidden_size), device=x.device)
@@ -133,8 +127,7 @@ class LSTMCell(nn.Module):
     next_c = f * prev_c + i * c_tilde
     next_h = o * torch.tanh(next_c)
     return next_h, next_c
-    #####################################################################
-    return
+    
 
   def reset_parameters(self):
     sqrt_k = (1. / self.hidden_size)**0.5
@@ -162,8 +155,6 @@ class PeepholedLSTMCell(nn.Module):
     self.hidden_size = hidden_size
     self.bias = bias
 
-    #####################################################################
-    # Implement here following the given signature                      #
     # Learnable weights and bias for `forget gate`
     self.W_f = nn.Parameter(torch.Tensor(hidden_size, 2 * hidden_size + input_size))
     if bias:
@@ -195,13 +186,9 @@ class PeepholedLSTMCell(nn.Module):
     self.reset_parameters()
     print(self.extra_repr())
     print(self.count_parameters())
-    #####################################################################
-
     return
 
   def forward(self, x, prev_state):
-    #####################################################################
-    # Implement here following the given signature                      #
     if prev_state is None:
       batch = x.shape[0]
       prev_h = torch.zeros((batch, self.hidden_size), device=x.device)
@@ -220,9 +207,7 @@ class PeepholedLSTMCell(nn.Module):
     o = torch.sigmoid(F.linear(concat_hcx1, self.W_o, self.b_o))
     next_h = o * torch.tanh(next_c)
     return next_h, next_c
-    #####################################################################
-    return
-
+    
   def reset_parameters(self):
     sqrt_k = (1. / self.hidden_size)**0.5
     with torch.no_grad():
@@ -249,8 +234,6 @@ class CoupledLSTMCell(nn.Module):
     self.hidden_size = hidden_size
     self.bias = bias
 
-    #####################################################################
-    # Implement here following the given signature                      #
     # Learnable weights and bias for `forget gate`
     self.W_f = nn.Parameter(torch.Tensor(hidden_size, hidden_size + input_size))
     if bias:
@@ -275,13 +258,10 @@ class CoupledLSTMCell(nn.Module):
     self.reset_parameters()
     print(self.extra_repr())
     print(self.count_parameters())
-    #####################################################################
-
+    
     return
 
   def forward(self, x, prev_state):
-    #####################################################################
-    # Implement here following the given signature                      #
     if prev_state is None:
       batch = x.shape[0]
       prev_h = torch.zeros((batch, self.hidden_size), device=x.device)
@@ -297,8 +277,7 @@ class CoupledLSTMCell(nn.Module):
     next_c = f * prev_c + (1 - f) * c_tilde
     next_h = o * torch.tanh(next_c)
     return next_h, next_c
-    #####################################################################
-    return
+   
 
   def reset_parameters(self):
     sqrt_k = (1. / self.hidden_size)**0.5
