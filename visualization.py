@@ -275,8 +275,7 @@ def visualize_internals(sequence_id,
 
 
 def war_and_peace_visualizer():
-  #####################################################################
-  # Implement here following the given signature                      #
+ 
   model = VisualizeInternalGates()
   state_dict = torch.load('data/war_and_peace_model_checkpoint.pt')
   vocabulary = state_dict['vocabulary']
@@ -298,14 +297,12 @@ def war_and_peace_visualizer():
       print('gate name: ', gate_name)
       char_sequence = dataset.convert_to_chars(sequences)
       visualize_internals(step, char_sequence, gate_name, states, saving_dir='visualize/')
-  #####################################################################
-
+  
   return
 
 
 def IMDB_visualizer():
-  #####################################################################
-
+  
   state_dict = torch.load('data/best_model_peephole.pt')
   vocabulary = state_dict['vocabulary']
 
@@ -336,8 +333,7 @@ def IMDB_visualizer():
         reviews = reviews.squeeze(0).detach().numpy().tolist()
       word_sequence = [idx2wrd[x] for x in reviews]
       visualize_internals(step, word_sequence, gate_name, states, saving_dir='visualize/')
-  #####################################################################
-
+  
   return
 
 
